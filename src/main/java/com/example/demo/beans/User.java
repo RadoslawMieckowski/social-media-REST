@@ -1,16 +1,18 @@
 package com.example.demo.beans;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
+@AllArgsConstructor//required for Builder
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
+@Component//creates User bean
 public class User {
-    private Integer age;
+    private Integer id;
     private String name;
     private LocalDate birthDate;
 }
