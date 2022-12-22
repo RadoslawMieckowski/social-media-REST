@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.beans.User;
+import com.example.demo.exceptions.UserNotExsitsException;
 import com.example.demo.service.UserDAOService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,12 @@ public class UserController {
     }
 
     @GetMapping(path = "/users/{id}")
-    public User getUserById(@PathVariable int id) {
-        return service.getUserById(id - 1);
+    public User getOneUser(@PathVariable int id) {
+        User oneUser = service.getOneUser(id);
+        if (oneUser == null) {
+            throw new UserNotExsitsException("The user with an id = " + id + " was not found");
+        }
+        return oneUser;
     }
 
     @PostMapping("/users")

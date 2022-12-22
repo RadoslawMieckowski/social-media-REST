@@ -39,10 +39,10 @@ private static List<User> users = new ArrayList<>();
         return users;
     }
 
-    public User getUserById(int index) {
+    public User getOneUser(int index) {
         //return users.get(index);
-        Predicate<? super User> predicate = user -> user.getId().equals(index + 1);      //functional style
-        return users.stream().filter(predicate).findFirst().get();
+        Predicate<? super User> predicate = user -> user.getId().equals(index);      //functional style
+        return users.stream().filter(predicate).findFirst().orElse(null);
     }
 
     public User createUser(User user) {
