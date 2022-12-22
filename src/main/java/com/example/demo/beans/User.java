@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-@Component//creates User bean
 public class User {
     private Integer id;
     private String name;
