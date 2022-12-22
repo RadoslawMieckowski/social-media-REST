@@ -41,7 +41,17 @@ private static List<User> users = new ArrayList<>();
 
     public User getUserById(int index) {
         //return users.get(index);
-        Predicate<? super User> predicate = user -> user.getId().equals(index);      //functional style
+        Predicate<? super User> predicate = user -> user.getId().equals(index + 1);      //functional style
         return users.stream().filter(predicate).findFirst().get();
+    }
+
+    public User createUser(User user) {
+        User newUser = User.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .birthDate(user.getBirthDate())
+                .build();
+        users.add(newUser);
+        return newUser;
     }
 }
