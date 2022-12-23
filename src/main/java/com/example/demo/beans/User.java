@@ -1,7 +1,8 @@
 package com.example.demo.beans;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,8 @@ import java.time.LocalDate;
 @Builder
 public class User {
     private Integer id;
+    @Size(min = 2, message = "user's name must be at least 2 letters long")
     private String name;
+    @Past(message = "user's birthDate must be in the past")
     private LocalDate birthDate;
 }

@@ -3,7 +3,9 @@ package com.example.demo.controllers;
 import com.example.demo.beans.User;
 import com.example.demo.exceptions.UserNotExsitsException;
 import com.example.demo.service.UserDAOService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User newUser = service.createUser(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")                              // appending variable
