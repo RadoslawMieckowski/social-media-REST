@@ -45,6 +45,11 @@ private static List<User> users = new ArrayList<>();
         return users.stream().filter(predicate).findFirst().orElse(null);
     }
 
+    public void deleteUserById(int index) {
+        Predicate<? super User> predicate = user -> user.getId().equals(index);
+        users.removeIf(predicate);
+    }
+
     public User createUser(User user) {
         User newUser = User.builder()
                 .id(user.getId())

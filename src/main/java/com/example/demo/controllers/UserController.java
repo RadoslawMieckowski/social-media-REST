@@ -30,13 +30,18 @@ public class UserController {
         return oneUser;
     }
 
+    @DeleteMapping(path = "/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        service.deleteUserById(id);
+    }
+
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         User newUser = service.createUser(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")      // appending variable
-                .buildAndExpand(newUser.getId())    // initializing the variable
-                .toUri();       //building the URI for a new resource
+                .path("/{id}")                              // appending variable
+                .buildAndExpand(newUser.getId())            // initializing the variable
+                .toUri();                                   //building the URI for a new resource
         return ResponseEntity.created(location).build();        //manipulates the return code
     }
 }
