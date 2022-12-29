@@ -1,5 +1,6 @@
 package com.example.demo.jpa.controllers;
 
+import com.example.demo.beans.Post;
 import com.example.demo.beans.User;
 import com.example.demo.exceptions.UserNotExsitsException;
 import com.example.demo.jpa.repositories.UserRepository;
@@ -55,4 +56,14 @@ public class UserJpaController {
                 .toUri();                                   //building the URI for a new resource
         return ResponseEntity.created(location).build();        //manipulates the return code
     }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> getAllPostsOfUser(@PathVariable int id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty()) {
+            throw new UserNotExsitsException("The user with an id = " + id + " was not found");
+        }
+        return user.get().getPosts();
+    }
+
 }
