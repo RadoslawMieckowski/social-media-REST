@@ -1,15 +1,14 @@
 package com.example.demo.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor//required for Builder
 @NoArgsConstructor
@@ -31,4 +30,8 @@ public class User {
     @JsonProperty("user_birth_date")
     @Column(name = "birth_date")    //necessary to fix an unknown bug (could not find column birthDate by the name)
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
 }

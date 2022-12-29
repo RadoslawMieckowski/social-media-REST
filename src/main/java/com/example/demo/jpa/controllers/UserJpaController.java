@@ -3,7 +3,6 @@ package com.example.demo.jpa.controllers;
 import com.example.demo.beans.User;
 import com.example.demo.exceptions.UserNotExsitsException;
 import com.example.demo.jpa.repositories.UserRepository;
-import com.example.demo.service.UserDAOService;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
