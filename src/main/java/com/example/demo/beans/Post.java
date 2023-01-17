@@ -1,18 +1,25 @@
 package com.example.demo.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @Entity(name = "posts_details")
 public class Post {
+
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
+    @JsonProperty("post_description")
+    @Size(min = 10, message = "post's description must consist of at least 10 characters")
     @Column(name = "post_description")
     private String description;
 

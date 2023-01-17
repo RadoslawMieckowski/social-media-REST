@@ -7,7 +7,7 @@ values (101, 'Mateusz', current_date());
 insert into user_details(id, name, birth_date)
 values (102, 'Konrad', current_date());
 
-insert into posts_details (id, post_description, user_id)
+insert into posts_details (id, post_description, user_id)--insertuj tylko po podglądzie w konsoli, żeby wiedzieć, jaka jest nazwa ostatniej kolumny wygenerowanej automatyczneie
 values (1, 'I want to master microservices', 100);
 
 insert into posts_details (id, post_description, user_id)
